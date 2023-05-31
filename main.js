@@ -49,14 +49,24 @@ function update_schedule() {
     var nt2;
     if (nt < 12) {
       status1 = "AM";
-      if (nt + 1 >= 12) {
+      if (nt + 1 > 12) {
         nt2 = nt + 1 - 12;
         status2 = "PM";
-      } else {
-        nt2 = nt + 1;
-        status2 = "AM";
-      }
-    } else {
+      } 
+      else {
+        if (nt + 1 == 12) {
+          nt2 = 12;
+          status2 = "PM";
+        } 
+        else {
+          nt2 = nt + 1;
+          status2 = "AM";
+          if(nt == 0){
+            nt = 12;
+          }
+        }
+    }
+  } else {
       status1 = "PM";
       if (nt + 1 > 23) {
         nt = nt - 12;
