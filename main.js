@@ -134,3 +134,11 @@ function setAlarm() {
     }
   }
 }
+
+var alarm_btm =  document.getElementById("alarm-btn");
+alarm_btm.addEventListener("mouseover",(event)=>{
+  document.getElementById("alarm-btn").textContent = "Party time!";
+})
+alarm_btm.addEventListener("mouseout",(event)=>{
+  document.getElementById("alarm-btn").textContent = "Set Alarm!";
+})
