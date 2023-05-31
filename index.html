@@ -137,7 +137,7 @@
         </div>
         <div class="greet_block1">GOOD MORNING!! WAKE UP !!</div>
         <div class="last-cont">
-          <button id="alarm-btn">Set Alarm</button>
+          <button id="alarm-btn" onclick="setAlarm()">Set Alarm</button>
           <div class="schedule-box">
             <ul>
               <li>Wake Up Time : 10AM - 11AM</li>
@@ -153,19 +153,19 @@
           <div class="counter-box1">
             <div class="text">TIME</div>
             <div class="box hour">
-              <span class="tdigit">10</span>
+              <span class="tdigit" id="hour">10</span>
               <span class="ttext">hours</span>
             </div><span class="colon">:</span>
             <div class="box min">
-              <span class="tdigit">00</span>
+              <span class="tdigit" id="min">00</span>
               <span class="ttext">mins</span>
             </div><span class="colon">:</span>
             <div class="box sec">
-              <span class="tdigit">01</span>
+              <span class="tdigit" id="sec">01</span>
               <span class="ttext">secs</span>
             </div>
-            <div class="box time-div">
-              AM
+            <div class="box time-div" id="ampm">
+              
             </div>
           </div>
           <div class="counter-box2"></div>
@@ -175,10 +175,11 @@
         </div>
         <div class="greet_block2">GRAB SOME HEALTHY BREAKFAST!!!</div>
         <div class="window-img">
-          <img src="img/Component 30 – 1.svg" alt="component" />
+          <img src="img/Component 30 – 1.svg" alt="component" id="image_ch"/>
         </div>
       </div>
     </div>
+    <script src="main.js"></script>
   </body>
 </html>
 

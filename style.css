@@ -11,9 +11,13 @@
   box-sizing: border-box;
 }
 
+body{
+  background-color: #3d087b;
+}
+
 .main-container {
   height: 100vh;
-  background-color: #3d087b;
+  /* background-color: #3d087b; */
   display: flex;
   justify-content: center;
   padding-top: 4vh;
@@ -138,7 +142,7 @@ select {
 
 .counter-box1 {
   width: 100%;
-  height: 16vh;
+  height: 6rem;
   background-color: #ededed;
   border-radius: 10px;
   padding: 3% 6%;
@@ -160,7 +164,7 @@ select {
 
 .counter-box2 {
   width: 80%;
-  height: 15vh;
+  height: 6rem;
   border-radius: 10px;
   background-color: #ffffff;
   position: absolute;
@@ -171,7 +175,7 @@ select {
 
 .counter-box3 {
   width: 70%;
-  height: 15vh;
+  height: 6rem;
   border-radius: 10px;
   background-color: #6a419a;
   position: absolute;
@@ -193,7 +197,7 @@ select {
 
 .greet_block2 {
   width: 100%;
-  height: 15vh;
+  height: 6rem;
   background-color: #ededed;
   border-radius: 10px;
   margin-bottom: 0.8rem;
@@ -292,8 +296,47 @@ select {
   .innercontainer2 {
     width: 90%;
   }
+  
+  .greet_block1{
+    position: relative;
+    top: 30.5rem;
+  }
 
   .greet_block2 {
     font-size: 1.5rem;
+    position: relative;
+    bottom: 31rem;
+  }
+
+  .counter-box1{
+    position: relative;
+    bottom: 31rem;
+  }
+
+  .counter-box2{
+    top: unset;
+    bottom: 30.4rem;
+  }
+
+  .counter-box3{
+    top: unset;
+    bottom: 29.8rem;
+  }
+
+  .timecard{
+    position: relative;
+    top: 16rem;
+    margin-bottom: 2rem;
+  }
+
+  .window-img{
+    position: relative;
+    bottom: 11rem;
+    margin-top: 1.2rem;
+  }
+  
+  .last-cont{
+    position: relative;
+    top: 30.5rem;
   }
 }
