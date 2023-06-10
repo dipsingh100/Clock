@@ -72,7 +72,11 @@ function update_schedule() {
         nt = nt - 12;
         nt2 = 12;
         status2 = "AM";
-      } else {
+      } else if(nt===12){
+        nt2 = nt+1-12;
+        status2 = "PM";
+      }
+      else{
         nt = nt - 12;
         nt2 = nt + 1;
         status2 = "PM";
