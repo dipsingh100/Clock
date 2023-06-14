@@ -47,10 +47,10 @@ body{
 }
 
 .card {
-  align-items: center;
   display: flex;
-  font-size: 1.2rem;
+  align-items: center;
   column-gap: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .card label {

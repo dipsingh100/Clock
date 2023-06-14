@@ -8,15 +8,14 @@ function setTime() {
   document.getElementById("min").textContent = min;
   document.getElementById("sec").textContent = sec;
 
-  if (hour > 12) {
-    if (hour != 12) document.getElementById("hour").textContent = hour - 12;
+  if (hour >= 12) {
     document.getElementById("ampm").textContent = "PM";
+    if (hour != 12) document.getElementById("hour").textContent = hour - 12;
   } else {
-    if (hour == 0) {
-      document.getElementById("hour").textContent = 12;
-    }
     document.getElementById("ampm").textContent = "AM";
+    if (hour == 0) document.getElementById("hour").textContent = 12;
   }
+
   switch (true) {
     case hour >= 4 && hour <= 11:
       document.getElementsByClassName("greet_block2")[0].textContent =
@@ -39,64 +38,49 @@ function setTime() {
 
 setInterval(setTime, 1000);
 
-function update_schedule() {
-  var sel = document.getElementsByTagName("select");
-  var li = document.getElementsByTagName("li");
+function update_schedule(i, time) {
   var status1, status2;
+  
+  var nt = Number(time);
+  var nt2;
+  if (nt < 12) {
+    status1 = "AM";
+    nt2 = nt+1
+    if (nt2 == 12)
+      status2 = "PM";
+    else
+      status2 = "AM";
+    if (nt == 0)
+      nt = 12;
+  } else {   //nt>=12
+    status1 = "PM";
+    nt2 = nt+1;
+    if (nt2 > 23) {
+      status2 = "AM";
+      nt2 = 12;
+    } else {
+      status2 = "PM";
+      nt2 = nt2 - 12;
+    }
+    if (nt != 12){
+      nt = nt - 12;
+    }
+  }
 
-  for (let i = 0; i < sel.length; i++) {
-    var nt = Number(sel[i].value);
-    var nt2;
-    if (nt < 12) {
-      status1 = "AM";
-      if (nt + 1 > 12) {
-        nt2 = nt + 1 - 12;
-        status2 = "PM";
-      } 
-      else {
-        if (nt + 1 == 12) {
-          nt2 = 12;
-          status2 = "PM";
-        } 
-        else {
-          nt2 = nt + 1;
-          status2 = "AM";
-          if(nt == 0){
-            nt = 12;
-          }
-        }
-    }
-  } else {
-      status1 = "PM";
-      if (nt + 1 > 23) {
-        nt = nt - 12;
-        nt2 = 12;
-        status2 = "AM";
-      } else if(nt===12){
-        nt2 = nt+1-12;
-        status2 = "PM";
-      }
-      else{
-        nt = nt - 12;
-        nt2 = nt + 1;
-        status2 = "PM";
-      }
-    }
-
-    switch (i) {
-      case 0:
-        li[i].textContent = `Wake Up Time : ${nt + status1} - ${nt2 + status2}`;
-        break;
-      case 1:
-        li[i].textContent = `Lunch Time : ${nt + status1} - ${nt2 + status2}`;
-        break;
-      case 2:
-        li[i].textContent = `Nap Time : ${nt + status1} - ${nt2 + status2}`;
-        break;
-      case 3:
-        li[i].textContent = `Night Time : ${nt + status1} - ${nt2 + status2}`;
-        break;
-    }
+  var li = document.getElementsByTagName("li");
+  switch (i) {
+    case 0:
+      li[i].textContent = `Wake Up Time : ${nt + status1} - ${nt2 + status2}`;
+      break;
+    case 1:
+      li[i].textContent = `Lunch Time : ${nt + status1} - ${nt2 + status2}`;
+      break;
+    case 2:
+      li[i].textContent = `Nap Time : ${nt + status1} - ${nt2 + status2}`;
+      break;
+    case 3:
+      li[i].textContent = `Night Time : ${nt + status1} - ${nt2 + status2}`;
+      break;
   }
 }
 
@@ -105,44 +89,43 @@ function setAlarm() {
   //   var time = document.getElementById("hour");
   let time = new Date();
   let hour = time.getHours();
-  update_schedule();
-  for (let item of sel) {
-    if (item.value == hour) {
-      if (item.id == "wakeup") {
+  for (let item = 0; item < sel.length; item++) {
+    update_schedule(item, sel[item].value);
+    if (sel[item].value == hour) {
+      if (sel[item].id == "wakeup") {
         //set the image, text, schedule
         document
           .getElementById("image_ch")
           .setAttribute("src", "img/Component 30 – 1.svg");
         document.getElementsByClassName("greet_block1")[0].textContent =
           "GRAB SOME HEALTHY BREAKFAST!!!";
-      } else if (item.id == "lunch") {
+      } else if (sel[item].id == "lunch") {
         document
           .getElementById("image_ch")
           .setAttribute("src", "img/lunch_image.svg");
         document.getElementsByClassName("greet_block1")[0].textContent =
           "LET'S HAVE SOME LUNCH!!!";
-      } else if (item.id == "nap") {
+      } else if (sel[item].id == "nap") {
         document
           .getElementById("image_ch")
           .setAttribute("src", "img/coffee.png");
         document.getElementsByClassName("greet_block1")[0].textContent =
           "STOP YAWNING, GET SOME TEA.. ITS JUST EVENING!!!";
-      } else if (item.id == "night") {
+      } else if (sel[item].id == "night") {
         document
           .getElementById("image_ch")
           .setAttribute("src", "img/good_night.svg");
         document.getElementsByClassName("greet_block1")[0].textContent =
           "CLOSE YOUR EYES AND GO TO SLEEP!!!";
       }
-      break;
     }
   }
 }
 
-var alarm_btm =  document.getElementById("alarm-btn");
-alarm_btm.addEventListener("mouseover",(event)=>{
+var alarm_btm = document.getElementById("alarm-btn");
+alarm_btm.addEventListener("mouseover", (event) => {
   document.getElementById("alarm-btn").textContent = "Party time!";
-})
-alarm_btm.addEventListener("mouseout",(event)=>{
+});
+alarm_btm.addEventListener("mouseout", (event) => {
   document.getElementById("alarm-btn").textContent = "Set Alarm!";
-})
+});
