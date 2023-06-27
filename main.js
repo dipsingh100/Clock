@@ -4,13 +4,13 @@ function setTime() {
   let min = time.getMinutes();
   let sec = time.getSeconds();
 
-  document.getElementById("hour").textContent = hour;
-  document.getElementById("min").textContent = min;
-  document.getElementById("sec").textContent = sec;
+  document.getElementById("hour").textContent = hour.toString().padStart(2, '0');
+  document.getElementById("min").textContent = min.toString().padStart(2, '0');
+  document.getElementById("sec").textContent = sec.toString().padStart(2, '0');
 
   if (hour >= 12) {
     document.getElementById("ampm").textContent = "PM";
-    if (hour != 12) document.getElementById("hour").textContent = hour - 12;
+    if (hour != 12) document.getElementById("hour").textContent = (hour - 12).toString().padStart(2, '0');
   } else {
     document.getElementById("ampm").textContent = "AM";
     if (hour == 0) document.getElementById("hour").textContent = 12;
